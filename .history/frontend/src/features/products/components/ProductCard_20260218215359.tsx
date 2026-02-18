@@ -1,4 +1,4 @@
-import type { FC } from "react"
+importtype { FC } from "react"
 import Button from "../../../shared/components/ui/Button"
 import Card from "../../../shared/components/ui/Card"
 import { useNavigate } from "react-router-dom"

@@ -1,4 +1,4 @@
-import type { FC, useState } from "react"
+import { FC, useState } from "react"
 import { Link } from "react-router-dom"
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Truck } from "lucide-react"
 import Button from "../../../shared/components/ui/Button"

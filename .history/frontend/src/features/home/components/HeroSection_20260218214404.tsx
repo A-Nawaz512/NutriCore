@@ -1,34 +1,34 @@
 import type { FC } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules"
-import "swiper/css"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import "swiper/css/effect-fade"
-import "swiper/css/pagination"
-import "swiper/css/navigation"
 import Button from "../../../shared/components/ui/Button"
-import About01 from "../../../assets/About/Hero04.jpg"
-import About02 from "../../../assets/About/Hero02.jpg"
-import About03 from "../../../assets/About/Hero03.jpg"
+import Home01 from "../../../assets/Home/Home01.jpg"
+import Home02 from "../../../assets/Home/Home02.jpg"
+import Home03 from "../../../assets/Home/Home03.jpg"
 
 const slides = [
   {
     title: "Daily Health, Simplified",
     description: "NutriCore supplements for energy, immunity, and overall wellness.",
-    img: About01,
+    img: Home01,
     btnText: "Shop Now",
     btnLink: "/products",
   },
   {
     title: "Fast & Secure Delivery",
     description: "Get your favorite supplements delivered to your doorstep quickly and safely.",
-    img: About02,
+    img: Home02,
     btnText: "Explore Delivery",
     btnLink: "/delivery",
   },
   {
     title: "Premium Quality Products",
     description: "Certified vitamins, protein powders, and wellness boosters to support your lifestyle.",
-    img: About03,
+    img: Home03,
     btnText: "View Products",
     btnLink: "/products",
   },

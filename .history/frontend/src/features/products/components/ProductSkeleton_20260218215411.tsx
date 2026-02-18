@@ -1,4 +1,4 @@
-import type { FC } from "react"
+import  { FC } from "react"
 import Skeleton from "../../../shared/components/ui/Skeleton"
 
 const ProductSkeleton: FC = () => {
