@@ -1,77 +1,100 @@
-import { FC, useState } from "react"
+import { FC } from "react"
+import { Link } from "react-router-dom"
 import Card from "../../../shared/components/ui/Card"
 import Button from "../../../shared/components/ui/Button"
-import Pagination from "../../../shared/components/ui/Pagination"
+import Badge from "../../../shared/components/ui/Badge"
 import Featured01 from "../../../assets/Home/Featured01.jpg"
 import Featured02 from "../../../assets/Home/Featured02.jpg"
 import Featured03 from "../../../assets/Home/Featured03.jpg"
 import Featured04 from "../../../assets/Home/Featured04.jpg"
+import { ArrowRight } from "lucide-react"
 
 const products = [
   {
-    id: 1,
-    name: "Vitamin C Capsules",
+    id: "prod-1",
+    name: "Vitamin C 1000mg",
     price: 19.99,
     image: Featured01,
+    category: "Vitamins",
+    badge: "Best Seller",
   },
   {
-    id: 2,
-    name: "Omega-3 Softgels",
+    id: "prod-2",
+    name: "Omega-3 Fish Oil",
     price: 29.99,
     image: Featured02,
+    category: "Omega",
+    badge: "Popular",
   },
   {
-    id: 3,
-    name: "Protein Powder",
-    price: 49.99,
+    id: "prod-3",
+    name: "Whey Protein Isolate",
+    price: 54.99,
     image: Featured03,
+    category: "Protein",
+    badge: "New",
   },
   {
-    id: 4,
-    name: "Immunity Booster",
+    id: "prod-4",
+    name: "Immunity Booster Complex",
     price: 24.99,
     image: Featured04,
+    category: "Immunity",
+    badge: null,
   },
 ]
 
 const FeaturedProducts: FC = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const totalPages = 3 // mock
-
   return (
     <section className="py-16 container mx-auto px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-[#25492D]">
-        Featured Products
-      </h2>
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-12 gap-4">
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Featured <span className="text-[#25492D]">Products</span>
+          </h2>
+          <p className="text-gray-500 mt-2 text-sm">Our most popular daily supplements</p>
+        </div>
+        <Link to="/products">
+          <Button variant="outline" size="sm" className="flex items-center gap-2">
+            View All <ArrowRight size={16} />
+          </Button>
+        </Link>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {products.map(product => (
           <Card
             key={product.id}
-            className="hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
+            className="hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between p-0 overflow-hidden group"
           >
-            <div>
+            <div className="relative">
               <img
                 src={product.image}
                 alt={product.name}
-                className="rounded-lg mb-4 w-full h-48 object-cover"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">{product.name}</h3>
-              <p className="text-[#25492D] font-bold text-lg mb-4">${product.price.toFixed(2)}</p>
+              <div className="absolute top-3 left-3 flex gap-2">
+                <Badge color="green" className="text-xs">{product.category}</Badge>
+                {product.badge && (
+                  <span className="bg-[#25492D] text-white text-xs px-2 py-0.5 rounded-full font-semibold">
+                    {product.badge}
+                  </span>
+                )}
+              </div>
             </div>
-            <Button variant="primary" size="sm" className="w-full mt-auto">
-              Add to Cart
-            </Button>
+            <div className="p-4 flex flex-col flex-1">
+              <h3 className="text-base font-semibold mb-1 text-gray-800 group-hover:text-[#25492D] transition-colors">
+                {product.name}
+              </h3>
+              <p className="text-[#25492D] font-bold text-lg mb-4">${product.price.toFixed(2)}</p>
+              <Link to={`/products/${product.id}`} className="mt-auto">
+                <Button variant="primary" size="sm" className="w-full">
+                  Add to Cart
+                </Button>
+              </Link>
+            </div>
           </Card>
         ))}
-      </div>
-
-      <div className="mt-10 flex justify-center">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
       </div>
     </section>
   )

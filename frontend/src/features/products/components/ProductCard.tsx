@@ -1,9 +1,10 @@
 import { FC } from "react"
 import Button from "../../../shared/components/ui/Button"
 import Card from "../../../shared/components/ui/Card"
+import { useNavigate } from "react-router-dom"
+import Badge from "../../../shared/components/ui/Badge"
 
-// Dummy product type
-interface Product {
+export interface Product {
   id: string
   name: string
   price: number
@@ -18,47 +19,50 @@ interface Product {
 }
 
 interface ProductCardProps {
-  product?: Product // optional prop, fallback to dummy
+  product: Product
 }
 
-// Dummy product fallback
-const dummyProduct: Product = {
-  id: "prod-1",
-  name: "Vitamin C Capsules",
-  price: 29.99,
-  images: ["https://images.pexels.com/photos/4057743/pexels-photo-4057743.jpeg"],
-  description: "Boost your immunity with daily Vitamin C capsules.",
-  stock: 20,
-  category: "Vitamins",
-  supplementQuantityOptions: [15, 30, 60, 120],
-  healthBenefits: ["Boost immunity", "Increase energy"],
-  ingredients: ["Vitamin C 500mg", "Microcrystalline cellulose"],
-  usageInstructions: "Take 1 capsule daily with water.",
-}
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
+  const navigate = useNavigate()
 
-const ProductCard: FC<ProductCardProps> = ({ product = dummyProduct }) => {
+  const handleClick = () => {
+    navigate(`/products/${product.id}`, {
+      state: { product },
+    })
+  }
+
   return (
-    <Card className="flex flex-col p-4 hover:shadow-lg transition-shadow duration-300">
+    <Card className="flex flex-col p-0 overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
       {/* Product Image */}
-      <div className="w-full h-44 overflow-hidden rounded-lg mb-4">
+      <div className="w-full h-48 overflow-hidden relative">
         <img
           src={product.images[0]}
           alt={product.name}
-          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
         />
+        <div className="absolute top-3 left-3">
+          <Badge color="green" className="text-xs">{product.category}</Badge>
+        </div>
       </div>
 
       {/* Product Info */}
-      <div className="flex flex-col flex-1">
-        <h3 className="text-lg font-semibold mb-1 text-gray-800">{product.name}</h3>
-        <p className="text-gray-500 text-sm mb-2 line-clamp-2">{product.description}</p>
-        <p className="text-blue-800 font-bold text-lg mb-4">${product.price.toFixed(2)}</p>
-      </div>
+      <div className="p-4 flex flex-col flex-1">
+        <div
+          onClick={handleClick}
+          className="flex flex-col flex-1 cursor-pointer"
+        >
+          <h3 className="text-base font-semibold mb-1 text-gray-800 group-hover:text-[#25492D] transition-colors line-clamp-1">
+            {product.name}
+          </h3>
+          <p className="text-gray-500 text-sm mb-3 line-clamp-2">{product.description}</p>
+          <p className="text-[#25492D] font-bold text-lg mb-4">${product.price.toFixed(2)}</p>
+        </div>
 
-      {/* Add to Cart Button */}
-      <Button variant="primary" size="md" className="w-full mt-auto">
-        Add to Cart
-      </Button>
+        {/* Add to Cart Button */}
+        <Button variant="primary" size="sm" className="w-full mt-auto">
+          Add to Cart
+        </Button>
+      </div>
     </Card>
   )
 }
