@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState, type FC } from "react"
-
+import { useEffect, useRef, type FC,  } from "react"
 import { ChevronDown, Search, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Button from "../../../shared/components/ui/Button"
@@ -98,8 +97,8 @@ const ProductFilter: FC<ProductFilterProps> = ({ filters, updateFilters, resetFi
                       setOpen(false)
                     }}
                     className={`px-4 py-2.5 text-sm cursor-pointer transition ${selectedCategory === cat
-                      ? "bg-[#25492D]/10 text-[#25492D] font-medium"
-                      : "text-gray-600 hover:bg-green-50 hover:text-[#25492D]"
+                        ? "bg-[#25492D]/10 text-[#25492D] font-medium"
+                        : "text-gray-600 hover:bg-green-50 hover:text-[#25492D]"
                       }`}
                   >
                     {cat}

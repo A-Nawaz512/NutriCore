@@ -1,6 +1,6 @@
-import { useState, type FC } from "react"
+import { FC, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { ArrowLeft, Upload, Plus, X, List, DollarSign, Package } from "lucide-react"
+import { ArrowLeft, Upload, Plus, X, List, Info, DollarSign, Package } from "lucide-react"
 import Button from "../../../shared/components/ui/Button"
 import Card from "../../../shared/components/ui/Card"
 import Input from "../../../shared/components/ui/Input"

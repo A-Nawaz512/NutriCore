@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FC } from "react"
+import { useState, type FC } from "react"
 
 import { ChevronDown, Search, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
