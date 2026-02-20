@@ -8,8 +8,6 @@ import { Menu } from "lucide-react"
 const AdminLayout: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  
-
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}

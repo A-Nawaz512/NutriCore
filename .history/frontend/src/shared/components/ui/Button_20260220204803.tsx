@@ -1,6 +1,6 @@
 import type { FC, ReactNode, ButtonHTMLAttributes } from "react";
-import { motion } from "framer-motion";
-import type { MotionProps } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import clsx from "clsx";
 
 // Combine standard button props with motion props

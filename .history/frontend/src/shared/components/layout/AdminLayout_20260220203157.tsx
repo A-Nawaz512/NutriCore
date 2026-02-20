@@ -3,37 +3,41 @@ import { Outlet } from "react-router-dom"
 import AdminSidebar from "../../../features/admin/components/AdminSidebar"
 import { Menu } from "lucide-react"
 
-
-
 const AdminLayout: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  
+  // Toggle sidebar open/close
+  const toggleSidebar = () => setSidebarOpen((prev) => !prev)
+  const closeSidebar = () => setSidebarOpen(false)
 
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <AdminSidebar
         isOpen={sidebarOpen}
-        closeSidebar={() => setSidebarOpen(false)}
+        closeSidebar={closeSidebar}
         className="fixed md:static top-0 left-0 z-30 h-full transition-transform transform md:translate-x-0"
       />
 
       {/* Backdrop for mobile */}
       {sidebarOpen && (
         <div
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 bg-black/30 z-20 md:hidden"
+          onClick={closeSidebar}
+          className="fixed inset-0 bg-black/30 z-20 md:hidden transition-opacity duration-300"
         />
       )}
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col min-h-screen md:ml-64 transition-all duration-300">
+      <div
+        className={`flex-1 flex flex-col min-h-screen md:ml-64 transition-all duration-300 ${
+          sidebarOpen ? "blur-sm md:blur-0" : ""
+        }`}
+      >
         {/* Mobile Top Bar */}
         <header className="md:hidden flex items-center justify-between bg-white border-b border-gray-200 px-4 py-3 sticky top-0 z-20">
           <button
-            onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-lg hover:bg-gray-100 transition"
+            onClick={toggleSidebar}
+            className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
           >
             <Menu size={20} />
           </button>

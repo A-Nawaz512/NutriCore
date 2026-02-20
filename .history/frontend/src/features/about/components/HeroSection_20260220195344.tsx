@@ -1,6 +1,7 @@
 import type { FC } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules"
+
 import Button from "../../../shared/components/ui/Button"
 import About01 from "../../../assets/About/Hero04.jpg"
 import About02 from "../../../assets/About/Hero02.jpg"

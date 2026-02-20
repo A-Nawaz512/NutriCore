@@ -17,11 +17,13 @@ const menu: MenuItem[] = [
   { name: "Settings", icon: Settings, path: "/admin/dashboard/settings" },
 ]
 
-interface SidebarContentProps {
-  closeMobile: () => void
+interface AdminSidebarProps {
+  isOpen: boolean
+  closeSidebar: () => void
+  className?: string
 }
 
-const SidebarContent: FC<SidebarContentProps> = ({ closeMobile }) => (
+const SidebarContent: FC<{ closeMobile: () => void }> = ({ closeMobile }) => (
   <aside className="w-64 bg-[#0b3d2d] text-white h-full flex flex-col shadow-2xl">
     {/* Brand Header */}
     <div className="h-16 flex items-center px-6 border-b border-white/10 bg-[#0f4d36]">
@@ -95,27 +97,13 @@ const SidebarContent: FC<SidebarContentProps> = ({ closeMobile }) => (
   </aside>
 )
 
-interface AdminSidebarProps {
-  isOpen: boolean
-  closeSidebar: () => void
-  className?: string
-}
-
 const AdminSidebar: FC<AdminSidebarProps> = ({ isOpen, closeSidebar, className }) => {
   return (
     <>
-      {/* Mobile Overlay */}
-      {isOpen && (
-        <div
-          className="md:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
-          onClick={closeSidebar}
-        />
-      )}
-
-      {/* Mobile Sidebar */}
+      {/* Sidebar */}
       <div
         className={clsx(
-          "fixed top-0 left-0 z-50 h-full w-64 shadow-2xl transition-transform duration-300 md:hidden",
+          "fixed top-0 left-0 z-30 h-full w-64 transition-transform duration-300 md:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full",
           className
         )}
@@ -123,10 +111,13 @@ const AdminSidebar: FC<AdminSidebarProps> = ({ isOpen, closeSidebar, className }
         <SidebarContent closeMobile={closeSidebar} />
       </div>
 
-      {/* Desktop Sidebar */}
-      <div className="hidden md:block fixed inset-y-0 left-0 z-30 w-64">
-        <SidebarContent closeMobile={() => {}} />
-      </div>
+      {/* Optional backdrop for mobile */}
+      {isOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/30 z-20 transition-opacity duration-300"
+          onClick={closeSidebar}
+        />
+      )}
     </>
   )
 }

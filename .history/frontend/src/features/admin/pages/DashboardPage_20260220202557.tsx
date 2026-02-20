@@ -183,7 +183,7 @@ const DashboardPage: FC = () => {
                   paddingAngle={5}
                   dataKey="value"
                 >
-                  {categoryData.map((_, index) => (
+                  {categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

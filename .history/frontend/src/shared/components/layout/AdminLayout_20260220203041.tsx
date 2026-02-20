@@ -3,12 +3,14 @@ import { Outlet } from "react-router-dom"
 import AdminSidebar from "../../../features/admin/components/AdminSidebar"
 import { Menu } from "lucide-react"
 
-
+interface AdminSidebarProps {
+  isOpen: boolean
+  closeSidebar: () => void
+  className?: string
+}
 
 const AdminLayout: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
-  
 
   return (
     <div className="flex min-h-screen bg-gray-50">

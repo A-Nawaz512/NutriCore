@@ -153,7 +153,7 @@ const DashboardPage: FC = () => {
                 <YAxis axisLine={false} tickLine={false} tick={{ fill: '#6B7280', fontSize: 12 }} tickFormatter={(val) => `$${val}`} />
                 <Tooltip
                   contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                  formatter={(value) => [`$${value ?? 0}`, "Revenue"]}
+                  formatter={(value: number) => [`$${value}`, "Revenue"]}
                 />
                 <Area
                   type="monotone"
@@ -183,7 +183,7 @@ const DashboardPage: FC = () => {
                   paddingAngle={5}
                   dataKey="value"
                 >
-                  {categoryData.map((_, index) => (
+                  {categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
